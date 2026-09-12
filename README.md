@@ -148,7 +148,7 @@ Because registration data contains student contact information, public reads are
 
 ---
 
-## Creator & Development Credits
+## Creator & Development Credits 🤑🤑🤑
 - **Designed & Developed by:** Viplov · B.Tech 2nd Year
 - **Email:** [viplov7@icloud.com](mailto:viplov7@icloud.com)
 - **GitHub:** [github.com/viplovk](https://github.com/viplovk)
