@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for validating registration inputs
+    function isValidName(name) {
+      return name is string && name.size() >= 2 && name.size() <= 80;
+    }
+
+    function isValidDepartment(dep) {
+      return dep is string && dep.size() >= 2 && dep.size() <= 100;
+    }
+
+    function isValidYear(year) {
+      return year in ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+    }
+
+    function isValidBranch(branch) {
+      return branch in ['CSE', 'CSE (AI/ML)', 'IT', 'ECE', 'ME', 'CE', 'Other'];
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.size() >= 5 && email.size() <= 254 && email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
+    }
+
+    function isValidPhone(phone) {
+      return phone is string && phone.size() >= 10 && phone.size() <= 15;
+    }
+
+    function isValidParticipationType(type) {
+      return type in [
+        'Ethnic Day Participation',
+        'Cultural Performance',
+        'Fashion / Ethnic Walk',
+        'Other'
+      ];
+    }
+
+    function isValidMessage(msg) {
+      return msg is string && msg.size() <= 300;
+    }
+
+    // Registrations collection:
+    // PUBLIC: Allowed to CREATE only if data meets strict validation criteria.
+    // READ / UPDATE / DELETE: DENIED to public. Managed only via Firebase Console or authenticated admin.
+    match /registrations/{registrationId} {
+      allow create: if request.resource.data.keys().hasAll([
+                        'name', 'department', 'year', 'branch',
+                        'email', 'phone', 'participationType',
+                        'consent', 'createdAt'
+                      ])
+                    && isValidName(request.resource.data.name)
+                    && isValidDepartment(request.resource.data.department)
+                    && isValidYear(request.resource.data.year)
+                    && isValidBranch(request.resource.data.branch)
+                    && isValidEmail(request.resource.data.email)
+                    && isValidPhone(request.resource.data.phone)
+                    && isValidParticipationType(request.resource.data.participationType)
+                    && request.resource.data.consent == true
+                    && request.resource.data.createdAt == request.time
+                    && (!('message' in request.resource.data) || isValidMessage(request.resource.data.message))
+                    // Ensure no unexpected privilege escalation fields exist
+                    && !('role' in request.resource.data)
+                    && !('isAdmin' in request.resource.data);
+
+      allow read: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

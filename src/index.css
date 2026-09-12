@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #100718;
+    --bg-plum: #160A24;
+    --bg-royal: #1D0B2E;
+    --gold-dim: #B8892D;
+    --gold-primary: #D4AF55;
+    --gold-light: #E7C873;
+    --gold-bright: #F3D995;
+    --champagne: #FBF7EE;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #100718;
+    color: #FBF7EE;
+  }
+}
+
+/* Hide default cursor on mouse/pointer devices so only custom cursor is shown */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after, html, body, button, a, input, select, textarea, label {
+    cursor: none !important;
+  }
+}
+
+/* Rendering performance optimization for long page sections on low-end PCs */
+.content-auto-render {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+/* Utility to hide scrollbars while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Typography Helpers */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-script {
+  font-family: 'Alex Brush', 'Great Vibes', cursive;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Antique Metallic Gold Gradients */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F3D995 0%, #D4AF55 35%, #B8892D 70%, #E7C873 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-bright {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F3D995 30%, #D4AF55 75%, #B8892D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-gradient {
+  border-image: linear-gradient(135deg, #F3D995 0%, #B8892D 50%, #D4AF55 100%) 1;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #F3D995 0%, #D4AF55 40%, #B8892D 85%, #E7C873 100%);
+}
+
+.bg-gold-sheen {
+  background: linear-gradient(135deg, rgba(243, 217, 149, 0.15) 0%, rgba(184, 137, 45, 0.05) 50%, rgba(212, 175, 85, 0.15) 100%);
+}
+
+/* Embossed / Sculpted Text Effect for ASMITA */
+.asmita-emboss {
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 10px 30px rgba(0, 0, 0, 0.9),
+    0 0 45px rgba(212, 175, 85, 0.25);
+}
+
+/* Subtle Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #D4AF55 0%, #FFF5D6 50%, #D4AF55 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 6s linear infinite;
+}
+
+/* Diya Flame Flicker */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 10px #FF9E1B) drop-shadow(0 0 25px #D4AF55);
+  }
+  25% {
+    transform: scale(1.05, 0.98) rotate(1.5deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 14px #FF7A00) drop-shadow(0 0 30px #E7C873);
+  }
+  50% {
+    transform: scale(0.97, 1.03) rotate(-2deg);
+    opacity: 0.92;
+    filter: drop-shadow(0 0 9px #FFA02A) drop-shadow(0 0 20px #B8892D);
+  }
+  75% {
+    transform: scale(1.02, 1.02) rotate(1deg);
+    opacity: 0.98;
+    filter: drop-shadow(0 0 12px #FF8E10) drop-shadow(0 0 28px #F3D995);
+  }
+}
+
+.animate-flame {
+  animation: flameFlicker 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Slow Mandala Rotation */
+@keyframes rotateMandala {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-mandala-slow {
+  animation: rotateMandala 120s linear infinite;
+}
+
+.animate-mandala-reverse {
+  animation: rotateMandala 160s linear infinite reverse;
+}
+
+/* Marigold Garland Sway */
+@keyframes garlandSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.2deg);
+  }
+}
+
+.animate-sway-left {
+  transform-origin: top center;
+  animation: garlandSway 6s ease-in-out infinite alternate;
+}
+
+.animate-sway-right {
+  transform-origin: top center;
+  animation: garlandSway 7s ease-in-out infinite alternate-reverse;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #100718;
+}
+::-webkit-scrollbar-thumb {
+  background: #3B215E;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8892D;
+}

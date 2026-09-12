@@ -1,0 +1,7 @@
+{
+  "name": "ASMITA — Ethnic Day 2026",
+  "description": "The official immersive cultural experience for ASMITA — Ethnic Day at IEC College of Engineering & Technology, Greater Noida on 16 September 2026.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
